@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-@t_%myyda^m=j0q*acx*xmab*jv$$@7%6@got%m_y$pm7-pls5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,6 +46,10 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000"
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'ishopping.urls'
