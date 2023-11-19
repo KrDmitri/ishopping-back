@@ -23,7 +23,7 @@ class CornerImage(models.Model):
         # ai 서버로 사진 전송
         image_data = self.picture.read()
 
-        target_server_url = "http://ec2-43-201-111-213.ap-northeast-2.compute.amazonaws.com:8080/api-corner-ai/corner_ai/"
+        target_server_url = "http://ec2-43-201-111-213.ap-northeast-2.compute.amazonaws.com:8000/api-corner-ai/corner_ai/"
 
         files = {'picture': (self.picture.name, image_data)}
         data = {'picture_id': self.picture_id}
