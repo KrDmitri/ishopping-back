@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api-corner/', include('corner_detect.api.urls', namespace='api-corners')),
-    # path('api-product/', include('product_detect.api.urls', namespace='api-products')),
+    path('api-product/', include('product_detect.api.urls', namespace='api-products')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
