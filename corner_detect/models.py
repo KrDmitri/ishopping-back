@@ -21,28 +21,28 @@ class CornerImage(models.Model):
         # self.picture_id = new_id
 
         # ai 서버로 사진 전송
-        # image_data = self.picture.read()
+        image_data = self.picture.read()
 
-        # target_server_url = "http://ec2-43-201-111-213.ap-northeast-2.compute.amazonaws.com:8000/api-corner-ai/corner_ai/"
+        target_server_url = "http://ec2-43-201-111-213.ap-northeast-2.compute.amazonaws.com:8000/api-corner-ai/corner_ai/"
 
-        # files = {'picture': (self.picture.name, image_data)}
-        # data = {'picture_id': self.picture_id}
-        # response = requests.post(target_server_url, files=files, data=data)
+        files = {'picture': (self.picture.name, image_data)}
+        data = {'picture_id': self.picture_id}
+        response = requests.post(target_server_url, files=files, data=data)
 
-        # if response.status_code == 201:
-        #     print("image transfer success")
-        # else:
-        #     print("failed to send image")
+        if response.status_code == 201:
+            print("image transfer success")
+        else:
+            print("failed to send image")
 
-        # # ai 서버에서 정보 data GET으로 가져오기
-        # try:
-        #     response = requests.get(target_server_url)
-        #     data = response.json()
-        #     for elem in data:
-        #         if elem["picture_id"] == self.picture_id:
-        #             print(elem)
-        #             self.info = elem["info"]
-        # except requests.RequestException as e:
-        #     print("error: ", str(e))
+        # ai 서버에서 정보 data GET으로 가져오기
+        try:
+            response = requests.get(target_server_url)
+            data = response.json()
+            for elem in data:
+                if elem["picture_id"] == self.picture_id:
+                    print(elem)
+                    self.info = elem["info"]
+        except requests.RequestException as e:
+            print("error: ", str(e))
 
         super().save(*args, **kargs)
