@@ -5,9 +5,18 @@ from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser
 
 # Create your models here.
+class TestTable(models.Model):
+    name = models.CharField(max_length=255)
+
+class PriceTable(models.Model):
+    name = models.CharField(max_length=50)
+    price = models.CharField(max_length=50)
+
+
 class CornerImage(models.Model):
     picture = models.ImageField()
     picture_id = models.CharField(max_length=14, blank=True)
+    product_name = models.CharField(max_length=200, blank=True, default='')
     info = models.CharField(max_length=200, blank=True)
     uploaded = models.DateTimeField(auto_now_add=True)
 
@@ -34,17 +43,19 @@ class CornerImage(models.Model):
         # else:
         #     print("failed to send image")
 
-        # # ai 서버에서 정보 data GET으로 가져오기
+        # # ai 서버에서 정보 data GET으로 가져오기  (근데 생각해보니 위에 POST만으로도 data 받아올 수 있지 않나?)
         # try:
         #     response = requests.get(target_server_url)
         #     data = response.json()
         #     for elem in data:
         #         if elem["picture_id"] == self.picture_id:
         #             print(elem)
-        #             self.info = elem["info"]
+        #             self.info = elem["product_name"]
         # except requests.RequestException as e:
         #     print("error: ", str(e))
+        self.product_name = ''
+        price_model = PriceTable.objects.get(name=self.product_name)
 
-        self.info = "이 제품은 테스트 제품입니다. 맛이 좋고 가격은 1000원입니다."
+        self.info = "이 제품은 테스트 제품입니다. 맛이 좋고 가격은 " +  price_model.price + "입니다."
 
         super().save(*args, **kargs)
