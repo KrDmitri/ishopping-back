@@ -51,8 +51,14 @@ class CornerImage(models.Model):
 
 
         # 위에서 찍은 사진이 어떤 제품 사진인지 self.product_name에 있으므로 추가 정보 가져오기
-        price_model = PriceTable.objects.get(name=self.product_name)
+        price = ""
+        try:
+            price_model = PriceTable.objects.get(name=self.product_name)
+            price = price_model.price
+        except:
+            price = "가격 정보 없음"
 
-        self.info = "이 제품은 " + self.product_name + "입니다. 가격은 " +  price_model.price + "입니다."
+
+        self.info = "이 제품은 " + self.product_name + "입니다. 가격은 " +  price + "입니다."
 
         super().save(*args, **kargs)
