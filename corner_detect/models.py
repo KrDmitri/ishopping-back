@@ -4,6 +4,8 @@ import requests
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser
 
+import time
+
 # Create your models here.
 class TestTable(models.Model):
     name = models.CharField(max_length=255)
@@ -24,6 +26,8 @@ class CornerImage(models.Model):
         return "Corner Image took at {}".format(self.uploaded.strftime('%Y-%m-%d %H:%M'))
     
     def save(self, *args, **kargs):
+        backStart = time.time()
+
         ##### ai 서버로 사진 전송 #####
         image_data = self.picture.read()
 
@@ -51,5 +55,8 @@ class CornerImage(models.Model):
 
 
         self.info = "이 제품은 " + self.product_name + "입니다. 가격은 " +  price + "입니다."
+
+        backEnd = time.time()
+        print(backEnd - backStart)
 
         super().save(*args, **kargs)
