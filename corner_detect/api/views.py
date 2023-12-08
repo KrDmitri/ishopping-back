@@ -46,3 +46,5 @@ def get_data_from_database(request):
         for elem in row:
             print(elem, end='')
         print()
+    
+    db.close()
