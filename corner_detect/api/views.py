@@ -103,7 +103,7 @@ def get_location_view(request):
             storeList.sort(key=lambda x:x[1])
             print('good')
             serialized_list = json.dumps(storeList)
-            return JsonResponse({'store_list': serialized_list})
+            return JsonResponse({'store_list': storeList})
         except LocationTable.DoesNotExist:
             return JsonResponse({'error': 'DB not found'}, status=404)
         except Exception as e:
