@@ -101,6 +101,7 @@ def get_location_view(request):
                 tempDist = int(calculate_distance(nowPos, storePos))
                 storeList.append([store.name, tempDist, store.address])
             storeList.sort(key=lambda x:x[1])
+            print('good')
             serialized_list = json.dumps(storeList)
             return JsonResponse({'store_list': serialized_list})
         except LocationTable.DoesNotExist:
