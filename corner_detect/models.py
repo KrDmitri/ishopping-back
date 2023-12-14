@@ -15,6 +15,7 @@ class PriceTable(models.Model):
     price = models.CharField(max_length=50)
     barcode_num = models.CharField(max_length=13, blank=True)
     qr_url = models.CharField(max_length=255, blank=True)
+    info = models.CharField(max_length=255, blank=True)
 
 class LocationTable(models.Model):
     name = models.CharField(max_length=50)

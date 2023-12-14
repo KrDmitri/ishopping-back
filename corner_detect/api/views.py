@@ -35,8 +35,9 @@ def get_info_view(request):
 
             product = PriceTable.objects.get(name=product_name)    ## 프론트에서 보낸 data는 product_name
             price = product.price
+            info = product.info
 
-            response_data = {'product_name': product_name, 'price': float(price)}
+            response_data = {'product_name': product_name, 'price': float(price), 'info':info}
             return JsonResponse(response_data)
         except PriceTable.DoesNotExist:
             return JsonResponse({'error': 'Product not found'}, status=404)
@@ -54,8 +55,9 @@ def get_info_by_barcode(request):
             product = PriceTable.objects.get(barcode_num=barcode_num)    ## 프론트에서 보낸 data는 product_name
             name = product.name
             price = product.price
+            info = product.info
 
-            response_data = {'product_name': name, 'price': float(price)}
+            response_data = {'product_name': name, 'price': float(price), 'info':info}
             return JsonResponse(response_data)
         except PriceTable.DoesNotExist:
             return JsonResponse({'error': 'Product not found'}, status=404)
@@ -74,8 +76,9 @@ def get_info_by_qr(request):
             product = PriceTable.objects.get(qr_url=qr)    ## 프론트에서 보낸 data는 product_name
             name = product.name
             price = product.price
+            info = product.info
 
-            response_data = {'product_name': name, 'price': float(price)}
+            response_data = {'product_name': name, 'price': float(price), 'info':info}
             return JsonResponse(response_data)
         except PriceTable.DoesNotExist:
             return JsonResponse({'error': 'Product not found'}, status=404)
