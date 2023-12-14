@@ -51,7 +51,7 @@ def get_info_by_barcode(request):
             data = json.loads(request.body)
             barcode_num = data.get('barcode_num')
 
-            product = PriceTable.objects.get(name=barcode_num)    ## 프론트에서 보낸 data는 product_name
+            product = PriceTable.objects.get(barcode_num=barcode_num)    ## 프론트에서 보낸 data는 product_name
             name = product.name
             price = product.price
 
@@ -71,7 +71,7 @@ def get_info_by_qr(request):
             data = json.loads(request.body)
             qr = data.get('qr')
 
-            product = PriceTable.objects.get(name=qr)    ## 프론트에서 보낸 data는 product_name
+            product = PriceTable.objects.get(qr_url=qr)    ## 프론트에서 보낸 data는 product_name
             name = product.name
             price = product.price
 
