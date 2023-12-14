@@ -106,6 +106,7 @@ def get_location_view(request):
         except LocationTable.DoesNotExist:
             return JsonResponse({'error': 'DB not found'}, status=404)
         except Exception as e:
+            print(e)
             return JsonResponse({'error': str(e)}, status=500)
 
 @method_decorator(csrf_exempt, name='dispatch')
