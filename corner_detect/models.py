@@ -13,6 +13,14 @@ class TestTable(models.Model):
 class PriceTable(models.Model):
     name = models.CharField(max_length=50)
     price = models.CharField(max_length=50)
+    barcode_num = models.CharField(max_length=13, blank=True)
+    qr_url = models.CharField(max_length=255, blank=True)
+
+class LocationTable(models.Model):
+    name = models.CharField(max_length=50)
+    latitude = models.DecimalField(max_digits = 10, decimal_places = 7)   # 위도
+    longitude = models.DecimalField(max_digits = 10, decimal_places = 7)  # 경도
+    address = models.CharField(max_length=255)
 
 
 class CornerImage(models.Model):
