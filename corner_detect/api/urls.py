@@ -1,8 +1,10 @@
 from .views import CornerImageViewSet
 from .views import get_info_view, get_location_view, test_function, get_info_by_barcode, get_info_by_qr
-# from .views import get_data_from_database
 from rest_framework import routers
 from django.urls import path, include
+
+# tibero
+from .views import get_data_from_database
 
 app_name = 'api-corners'
 
@@ -17,5 +19,5 @@ urlpatterns = [
     path('get-info-by-barcode/', get_info_by_barcode, name='get_info_by_barcode'),
     path('get-info-by-qr/', get_info_by_qr, name='get_info_by_qr'),
 
-    # path('get-db-data/', get_data_from_database, name='get_db_data'),
+    path('get-db-data/', get_data_from_database, name='get_db_data'),
 ]

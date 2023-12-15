@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 
 from geopy.distance import geodesic
 # tibero DB 관련 import
-# import pyodbc
+import pyodbc
 
 
 def calculate_distance(coord1, coord2):
@@ -145,14 +145,14 @@ def test_function(request):
 
 
 
-# def get_data_from_database(request):
-#     db = pyodbc.connect("DSN=tmax;UID=sys;PWD=tibero")
-#     cursor = db.cursor()
-#     cursor.execute("select * from test_table")
+def get_data_from_database(request):
+    db = pyodbc.connect("DSN=tmax;UID=sys;PWD=tibero")
+    cursor = db.cursor()
+    cursor.execute("select * from test_table")
 
-#     for row in cursor:
-#         for elem in row:
-#             print(elem, end='')
-#         print()
+    for row in cursor:
+        for elem in row:
+            print(elem, end='')
+        print()
     
-#     db.close()
+    db.close()
