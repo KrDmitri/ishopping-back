@@ -19,5 +19,5 @@ urlpatterns = [
     path('get-info-by-barcode/', get_info_by_barcode, name='get_info_by_barcode'),
     path('get-info-by-qr/', get_info_by_qr, name='get_info_by_qr'),
 
-    path('get-db-data/', get_data_from_database, name='get_db_data'),
+    # path('get-db-data/', get_data_from_database, name='get_db_data'),
 ]
