@@ -4,7 +4,7 @@ from rest_framework import routers
 from django.urls import path, include
 
 # tibero
-from .views import get_data_from_database
+# from .views import get_data_from_database
 
 app_name = 'api-corners'
 
